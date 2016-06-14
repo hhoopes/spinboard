@@ -25,7 +25,7 @@ feature "User creates a link" do
     sign_in(user)
 
     link_params = {
-      url: "http://example",
+      url: "invalid link",
       title: "My favorite site"
     }
 
@@ -34,7 +34,7 @@ feature "User creates a link" do
 
     click_on "Submit Link"
 
-    expect(page).to have_content("Please submit a valid URL")
+    expect(page).to have_content("Please provide a valid URL")
     expect(page).not_to have_link(link_params[:title], href: link_params[:url])
   end
 

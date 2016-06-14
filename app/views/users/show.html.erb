@@ -43,7 +43,11 @@
           <p class="<%= readStatus  %>">
             <%= link_to link.title, link.url, class: "linkTitle" %>
           </p>
-      
+          <p>
+            <a href="#" class="markAsRead <%= "hidden" if link.read %>">(Mark as read)</a>
+            <a href="#" class="markAsUnread <%= "hidden" if !link.read %>">(Mark as unread)</a>
+            <%= link_to "(Edit)", edit_link_path(link), method: "get" %>
+          </p>
         </div>
       <% end %>
     </div>
