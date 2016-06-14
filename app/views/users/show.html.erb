@@ -8,9 +8,44 @@
     <h2>
       Add a new link
     </h2>
+
+    <section class="new_link">
+      <%= form_for(@link) do |f| %>
+        <p>
+          <%= f.text_field :url, placeholder: "Link URL" %>
+        </p>
+        <p>
+          <%= f.text_field :title, placeholder: "Title" %>
+        </p>
+        <p>
+          <%= f.submit "Submit Link", class: "btn btn-default" %>
+        </p>
+      <% end %>
+    </section>
+
+    <form>
+      <label class="sr-only" for="search"></label>
+      <input type="text" class="form-control" id="filterLinks" placeholder="Filter Links">
+    </form>
+
+    <%= button_tag "Show Read", id: "filterRead", class: "btn-default" %>
+    <%= button_tag "Show Unread", id: "filterUnread", class: "btn-default" %>
+    <%= button_tag "Sort Alphabetically", id: "sortAlpha", class: "btn-default"%>
+
   </section>
 
-  <section>
+  <section class=" col-xs-6">
     <h2>Your Links</h2>
+    <div class="allLinks">
+      <% @links.all.each do |link| %>
+        <div data-id="<%= link.id%>" class="eachLink">
+          <% readStatus = "read" if link.read %>
+          <p class="<%= readStatus  %>">
+            <%= link_to link.title, link.url, class: "linkTitle" %>
+          </p>
+      
+        </div>
+      <% end %>
+    </div>
   </section>
 </div

@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :must_login, only: [:show]
 
   def show
-    @user = current_user
+    @links = current_user.links
+    @link = Link.new
   end
 
   def new
